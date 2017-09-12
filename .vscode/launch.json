@@ -5,17 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceRoot}/cropchat"
-        },
-        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/app.js"
+            "program": "${workspaceRoot}/build/dev-server.js",
+            "cwd": "${workspaceRoot}",
+            "webRoot": "${workSpaceRoot}/src"
         }
     ]
 }
