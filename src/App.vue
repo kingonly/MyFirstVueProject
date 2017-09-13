@@ -42,7 +42,7 @@ export default {
     signInWithGoogle: function () {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(provider).then((result) => {
-        this.$root.user = result.user
+        console.log(result.user.email)
       }).catch(function (error) {
         console.log(error)
       })
