@@ -1,7 +1,7 @@
 <template>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-      <router-link class="mdl-layout__drawer-button" to="/"><img src="" alt="Home"></router-link>
+      <router-link class="mdl-layout__drawer-button" to="/"><i class="material-icons">code</i></router-link>
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">CropChat</span>
         <div class="mdl-layout-spacer"></div>
