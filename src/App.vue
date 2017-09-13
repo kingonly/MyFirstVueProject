@@ -1,25 +1,21 @@
 <template>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
+      <router-link class="mdl-layout__drawer-button" to="/"><img src="" alt="Home"></router-link>
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">CropChat</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation" v-if="!this.$root.user && !this.$root.loading">
-          <button @click="signInWithGoogle">Sign in with Google</button>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" @click="signInWithGoogle">Sign in</button>
+        </nav>
+        <nav class="mdl-navigation" v-if="this.$root.loading">
+          <div class="mdl-spinner mdl-js-spinner is-active"></div>
         </nav>
         <nav class="mdl-navigation" v-if="this.$root.user">
-          <img :src="this.$root.user.photoURL" alt="avatar" style="width: 30px; height: 30px; border-radius: 50%;">
-          <button @click="signOut">Sign Out</button>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" @click="signOut">Sign Out</button>
         </nav>
       </div>
     </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">CropChat</span>
-      <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
-        <router-link class="mdl-navigation__link" to="/post" @click.native="hideMenu">Post a picture</router-link>
-      </nav>
-    </div>
     <main class="mdl-layout__content">
       <div class="page-content">
         <router-view></router-view>
@@ -94,5 +90,9 @@ header span {
   letter-spacing: .02em;
   font-weight: 400;
   box-sizing: border-box;
+}
+
+.mdl-layout__header-row {
+    padding-left: 72px;
 }
 </style>
