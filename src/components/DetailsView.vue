@@ -26,7 +26,7 @@
   export default {
     computed: {
       cat: function () {
-        return find(this.$root.catdb, (cat) => cat['.key'] === this.$route.params.id)
+        return find(this.$root.items, (cat) => cat['.key'] === this.$route.params.id)
       }
     }
   }

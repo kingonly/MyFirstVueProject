@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     postCat () {
-      this.$root.$firebaseRefs.catdb.push(
+      this.$root.$firebaseRefs.items.push(
         {
           'url': this.catUrl,
           'comment': this.title,

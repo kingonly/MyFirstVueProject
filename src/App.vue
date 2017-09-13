@@ -4,8 +4,8 @@
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">CropChat</span>
         <div class="mdl-layout-spacer"></div>
-        <nav class="mdl-navigation">
-         <router-link class="mdl-navigation__link" to="/signin" @click.native="hideMenu">Sign In</router-link>
+        <nav class="mdl-navigation" v-if="!this.$root.user">
+          <button @click="signInWithGoogle">Sign in with Google</button>
         </nav>
       </div>
     </header>
@@ -26,12 +26,22 @@
 
 <script>
 require('material-design-lite')
+import firebase from 'firebase'
+
 export default {
   name: 'app',
   methods: {
     hideMenu: function () {
       document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
       document.getElementsByClassName('mdl-layout__obfuscator')[0].classList.remove('is-visible')
+    },
+    signInWithGoogle: function () {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithRedirect(provider).then((result) => {
+        this.$root.user = result.user
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   }
 }
