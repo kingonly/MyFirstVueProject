@@ -4,8 +4,12 @@
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">CropChat</span>
         <div class="mdl-layout-spacer"></div>
-        <nav class="mdl-navigation" v-if="!this.$root.user">
+        <nav class="mdl-navigation" v-if="!this.$root.user && !this.$root.loading">
           <button @click="signInWithGoogle">Sign in with Google</button>
+        </nav>
+        <nav class="mdl-navigation" v-if="this.$root.user">
+          <img :src="this.$root.user.photoURL" alt="avatar" style="width: 30px; height: 30px; border-radius: 50%;">
+          <button @click="signOut">Sign Out</button>
         </nav>
       </div>
     </header>
@@ -39,6 +43,13 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(provider).then((result) => {
         this.$root.user = result.user
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    signOut: function () {
+      firebase.auth().signOut().then(() => {
+        this.$root.user = null
       }).catch(function (error) {
         console.log(error)
       })

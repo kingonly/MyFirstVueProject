@@ -22,7 +22,10 @@ new Vue({
       if (user) {
         this.user = user
         this.$bindAsArray('items', db.ref(`items/${user.uid}`).orderByChild('created_at'))
+      } else {
+        this.items = []
       }
+      this.loading = false
     })
   },
   router,
@@ -30,6 +33,7 @@ new Vue({
   components: { App },
   data: {
     user: null,
+    loading: true,
     items: []
   }
 })
