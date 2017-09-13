@@ -9,8 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/build/dev-server.js",
-            "cwd": "${workspaceRoot}",
-            "webRoot": "${workSpaceRoot}/src"
+            "cwd": "${workspaceRoot}"
         }
     ]
 }

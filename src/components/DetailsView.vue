@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-grid">
+  <div class="mdl-grid" v-if="cat">
     <div class="mdl-cell mdl-cell--8-col">
       <div class="picture">
         <img :src="cat.url" />
@@ -22,7 +22,7 @@
 </template>
 <script>
   import { find } from 'lodash'
-
+  
   export default {
     data () {
       return {
@@ -30,7 +30,14 @@
       }
     },
     mounted () {
-      this.cat = find(this.$root.cat, (cat) => cat['.key'] === this.$route.params.id)
+      console.log('mounted: ' + this.$route.params.id)
+      console.log('mounted: ' + this.$root.catdb.length)
+      if (this.$root.catdb.length > 0) {
+        this.cat = find(this.$root.catdb, (cat) => cat['.key'] === this.$route.params.id)
+      } else {
+        // let db = firebase.database.ref('cat')
+        console.log('mounted: cat db is empty')
+      }
     }
   }
 </script>
