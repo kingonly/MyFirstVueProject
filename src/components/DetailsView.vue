@@ -1,16 +1,16 @@
 <template>
-  <div class="mdl-grid" v-if="cat">
+  <div class="mdl-grid" v-if="item">
     <div class="mdl-cell mdl-cell--8-col">
       <div class="picture">
-        <img :src="cat.url" />
+        <img :src="item.url" />
       </div>
       <div class="info">
-        <span>{{ cat.info }}</span>
+        <span>{{ item.info }}</span>
       </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
       <div class="comment">
-        <span>{{ cat.comment }}</span>
+        <span>{{ item.comment }}</span>
       </div>
       <div class="actions">
         <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/action">
@@ -25,8 +25,8 @@
   
   export default {
     computed: {
-      cat: function () {
-        return find(this.$root.items, (cat) => cat['.key'] === this.$route.params.id)
+      item: function () {
+        return find(this.$root.items, (item) => item['.key'] === this.$route.params.id)
       }
     }
   }

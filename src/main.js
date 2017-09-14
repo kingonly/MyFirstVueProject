@@ -41,7 +41,9 @@ new Vue({
   methods: {
     addItem: function (item) {
       if (item) {
-        this.userdb.push(item)
+        this.userdb.push(item).then(
+          router.push('/')
+        )
       }
     },
     removeItem: function (key) {

@@ -3,7 +3,7 @@
     <header class="mdl-layout__header">
       <router-link class="mdl-layout__drawer-button" to="/"><i class="material-icons">code</i></router-link>
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">CropChat</span>
+        <span class="mdl-layout-title">Application</span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation" v-if="!this.$root.user && !this.$root.loading">
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" @click="signInWithGoogle">Sign in</button>

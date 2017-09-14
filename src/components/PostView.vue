@@ -3,17 +3,17 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--8-col">
         <div class="card-image__picture">
-          <img :src="this.catUrl"/>
+          <img :src="this.itemUrl"/>
         </div>
       </div>
       <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <input id="title" v-model="title" type="text" class="mdl-textfield__input"/>
-          <label for="title" class="mdl-textfield__label">Describe me</label>
+          <input id="text" v-model="text" type="text" class="mdl-textfield__input"/>
+          <label for="text" class="mdl-textfield__label">Describe the item</label>
         </div>
         <div class="actions">
-          <a @click.prevent="postCat" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            POST A CAT
+          <a @click.prevent="addItem" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            ADD ITEM
           </a>
         </div>
       </div>
@@ -27,26 +27,24 @@ import parse from 'xml-parser'
 export default {
   data () {
     return {
-      'catUrl': '',
-      'title': ''
+      'itemUrl': '',
+      'text': ''
     }
   },
   mounted () {
     this.$http.get('https://thecatapi.com/api/images/get?format=xml&results_per_page=1').then(response => {
-      this.catUrl = parse(response.body).root.children['0'].children['0'].children['0'].children['0'].content
+      this.itemUrl = parse(response.body).root.children['0'].children['0'].children['0'].children['0'].content
     })
   },
   methods: {
-    postCat () {
-      this.$root.$firebaseRefs.items.push(
+    addItem () {
+      this.$root.addItem(
         {
-          'url': this.catUrl,
-          'comment': this.title,
-          'info': 'Posted by user on Tuesday',
+          'url': this.itemUrl,
+          'comment': this.text,
+          'info': 'Posted by ' + this.$root.user.displayName,
           'created_at': -1 * new Date().getTime()
         }
-      ).then(
-        this.$router.push('/')
       )
     }
   }

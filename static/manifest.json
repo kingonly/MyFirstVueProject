@@ -1,6 +1,6 @@
 {
-  "name": "cropchat",
-  "short_name": "cropchat",
+  "name": "application",
+  "short_name": "application",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",
