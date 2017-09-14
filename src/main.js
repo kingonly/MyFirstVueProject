@@ -21,7 +21,8 @@ new Vue({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.user = user
-        this.$bindAsArray('items', db.ref(`items/${user.uid}`).orderByChild('created_at'))
+        this.userdb = db.ref(`items/${user.uid}`)
+        this.$bindAsArray('items', this.userdb.orderByChild('created_at'))
       } else {
         this.items = []
       }
@@ -33,7 +34,18 @@ new Vue({
   components: { App },
   data: {
     user: null,
+    userdb: null,
     loading: true,
     items: []
+  },
+  methods: {
+    addItem: function (item) {
+      if (item) {
+        this.userdb.push(item)
+      }
+    },
+    removeItem: function (key) {
+      this.userdb.child(key).remove()
+    }
   }
 })
